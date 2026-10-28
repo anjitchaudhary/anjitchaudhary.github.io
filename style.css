@@ -197,12 +197,29 @@ h3 { font-size: 28px; }
 .about-content { max-width: 650px; }
 .about-content p { color: var(--muted); margin-bottom: 22px; }
 .about-content .lead { color: #dce4ee; font-size: 21px; line-height: 1.55; }
-.about-stats { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 42px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.about-stats div { padding: 20px 15px 20px 0; border-right: 1px solid var(--line); }
-.about-stats div:last-child { border-right: 0; padding-left: 15px; }
+
+/* Fixed grid box layout for About Me section stats */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 42px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+}
+.about-stats div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
 .about-stats strong, .about-stats span { display: block; }
-.about-stats strong { font-size: 14px; }
-.about-stats span { color: var(--muted); font-size: 10px; margin-top: 4px; }
+.about-stats strong { font-size: 13px; color: var(--text); }
+.about-stats span { color: var(--muted); font-size: 10px; margin-top: 4px; line-height: 1.3; }
 
 .centered { text-align: center; display: grid; justify-items: center; }
 .centered > p:last-child { max-width: 600px; color: var(--muted); margin-top: 20px; }
@@ -229,9 +246,24 @@ h3 { font-size: 28px; }
 .project-number { position: absolute; top: 26px; right: 28px; font: 500 10px "DM Mono"; color: #718096; }
 .project-content { position: relative; z-index: 2; max-width: 500px; }
 .project-type { color: var(--cyan); font: 500 9px "DM Mono"; letter-spacing: .13em; margin-bottom: 16px; }
+.badge-discontinued { color: #ff6b6b; font-size: 10px; margin-left: 6px; }
 .project-content p:not(.project-type) { color: var(--muted); font-size: 13px; max-width: 510px; margin: 15px 0 20px; }
 .tags { display: flex; gap: 7px; flex-wrap: wrap; }
 .tags span { font: 400 9px "DM Mono"; color: #aebbd0; border: 1px solid var(--line); padding: 6px 9px; border-radius: 7px; }
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font: 500 11px "DM Mono";
+  color: var(--cyan);
+  letter-spacing: .04em;
+  transition: color .2s, transform .2s;
+}
+.project-link:hover {
+  color: var(--text);
+  transform: translateX(3px);
+}
 .project-visual {
   position: absolute; width: 260px; height: 260px; right: 35px; bottom: -75px;
   border-radius: 50%; display: grid; place-items: center;
@@ -272,14 +304,22 @@ blockquote span { color: transparent; -webkit-text-stroke: 1px rgba(243,246,251,
 }
 .contact-intro { color: var(--muted); max-width: 500px; margin-top: 22px; }
 .contact-details { display: grid; gap: 0; }
-.contact-item { padding: 16px 0; border-bottom: 1px solid var(--line); transition: padding-left .25s; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding-left .25s;
+}
 .contact-item:hover { padding-left: 8px; }
 .contact-item strong { display: block; font-size: 14px; margin-top: 4px; word-break: break-word; }
+
 .socials { display: grid; grid-template-columns: repeat(5,1fr); margin-top: 18px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-.socials a { padding: 17px 18px; color: var(--muted); font-size: 12px; border-right: 1px solid var(--line); transition: background .25s, color .25s; }
+.socials a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 17px 18px; color: var(--muted); font-size: 12px; border-right: 1px solid var(--line); transition: background .25s, color .25s; }
 .socials a:last-child { border-right: 0; }
 .socials a:hover { background: rgba(255,255,255,.045); color: var(--text); }
-.socials span { float: right; color: var(--accent); }
+.socials b { color: var(--accent); font-weight: normal; }
 
 .site-footer {
   width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 30px 0 45px;
@@ -296,6 +336,7 @@ blockquote span { color: transparent; -webkit-text-stroke: 1px rgba(243,246,251,
   .hero { grid-template-columns: 1fr; padding-top: 45px; }
   .hero-visual { min-height: 570px; }
   .two-column { grid-template-columns: 1fr; gap: 45px; }
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: auto; }
   .contact-panel { grid-template-columns: 1fr; gap: 45px; }
@@ -315,9 +356,7 @@ blockquote span { color: transparent; -webkit-text-stroke: 1px rgba(243,246,251,
   .portrait-card { inset: 35px 18px 20px; }
   .card-location { left: -4px; }
   .card-code { right: -4px; bottom: 60px; }
-  .about-stats { grid-template-columns: 1fr; }
-  .about-stats div, .about-stats div:last-child { border-right: 0; border-bottom: 1px solid var(--line); padding: 15px 0; }
-  .about-stats div:last-child { border-bottom: 0; }
+  .about-stats { grid-template-columns: 1fr 1fr; }
   .project-card { min-height: 430px; }
   .project-visual { right: -55px; bottom: -70px; }
   .contact-panel { padding: 30px 22px; }
@@ -327,47 +366,54 @@ blockquote span { color: transparent; -webkit-text-stroke: 1px rgba(243,246,251,
   .site-footer { flex-direction: column; }
 }
 
-/* Final header avatar fix */
-.brand-mark{
-  width:42px !important;
-  height:42px !important;
-  min-width:42px !important;
-  border-radius:50% !important;
-  overflow:hidden !important;
-  padding:0 !important;
-  display:block !important;
-  background:#111827 !important;
-  border:1px solid rgba(255,255,255,.22) !important;
-  box-shadow:0 8px 28px rgba(0,0,0,.35),0 0 22px rgba(124,156,255,.16) !important;
+/* Header Avatar Styling */
+.brand-mark {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  display: block !important;
+  background: #111827 !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.35), 0 0 22px rgba(124,156,255,.16) !important;
 }
-.brand-mark img{
-  width:100% !important;
-  height:100% !important;
-  display:block !important;
-  border-radius:50% !important;
-  object-fit:cover !important;
-  object-position:center center !important;
-  transform:none !important;
-  filter:saturate(.96) contrast(1.03) !important;
+.brand-mark img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  transform: none !important;
+  filter: saturate(.96) contrast(1.03) !important;
 }
-.brand-mark:after{display:none !important}
 
-/* Keep every requested contact/social icon visible and aligned */
+/* Clean, precise SVG / CSS Icon styling for contact and social boxes */
 .contact-icon,
-.social-icon{
-  display:grid !important;
-  place-items:center !important;
-  flex:0 0 36px !important;
-  width:36px !important;
-  height:36px !important;
-  border-radius:11px !important;
+.social-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
 }
-.icon-mail:before{content:"✉" !important;border:0 !important;width:auto !important;height:auto !important;font-size:17px !important;color:var(--cyan) !important}
-.icon-mail:after{display:none !important}
-.icon-phone:before{content:"☎" !important;font-size:15px !important;color:var(--cyan) !important}
-.icon-location:before{content:"⌖" !important;font-size:20px !important;color:var(--cyan) !important}
-.icon-github:before{content:"GH" !important;font:bold 9px Arial,Helvetica,sans-serif !important;color:#fff !important}
-.icon-linkedin:before{content:"in" !important;font:bold 13px Arial,Helvetica,sans-serif !important;color:#fff !important}
-.icon-youtube:before{content:"▶" !important;font-size:10px !important;color:#ff5c6c !important}
-.icon-instagram:before{content:"◎" !important;font-size:21px !important;color:#ff8bc5 !important}
-.icon-facebook:before{content:"f" !important;font:bold 18px Arial,Helvetica,sans-serif !important;color:#7fa5ff !important}
+
+.icon-mail:before { content: "✉" !important; color: var(--cyan) !important; font-size: 15px !important; }
+.icon-phone:before { content: "☎" !important; color: var(--cyan) !important; font-size: 14px !important; }
+.icon-location:before { content: "⌖" !important; color: var(--cyan) !important; font-size: 16px !important; }
+
+.icon-github:before { content: "GH" !important; font-family: "DM Mono", monospace !important; font-size: 11px !important; color: #f3f6fb !important; }
+.icon-linkedin:before { content: "in" !important; font-family: sans-serif !important; font-weight: bold !important; font-size: 13px !important; color: #58d7ff !important; }
+.icon-youtube:before { content: "▶" !important; font-size: 10px !important; color: #ff5c6c !important; }
+.icon-instagram:before { content: "📷" !important; font-size: 12px !important; color: #ff8bc5 !important; }
+.icon-facebook:before { content: "f" !important; font-family: sans-serif !important; font-weight: bold !important; font-size: 15px !important; color: #7fa5ff !important; }
